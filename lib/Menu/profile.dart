@@ -6,72 +6,41 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const background = Color(0xFF0B1012);
-    const primaryText = Color(0xFFF1F3F4);
-    const secondaryText = Color(0xFF899195);
-    const green = Color(0xFF20C56B);
-
     return Scaffold(
-      backgroundColor: background,
+      backgroundColor: const Color(0xFF0B1012),
       appBar: AppBar(
-        backgroundColor: background,
-        foregroundColor: primaryText,
+        backgroundColor: const Color(0xFF0B1012),
+        foregroundColor: Colors.white,
+        title: const Text('Profil'),
         elevation: 0,
-        title: const Text(
-          'Profil',
-          style: TextStyle(fontSize: 24),
-        ),
-        bottom: const PreferredSize(
-          preferredSize: Size.fromHeight(1),
-          child: Divider(
-            height: 1,
-            color: Color(0xFF1B2225),
-          ),
-        ),
       ),
       body: ListView(
-        padding: EdgeInsets.zero,
         children: [
-          const SizedBox(height: 48),
+          const SizedBox(height: 45),
 
           // Foto profil
           Center(
             child: Stack(
-              clipBehavior: Clip.none,
               children: [
-                Container(
-                  padding: const EdgeInsets.all(5),
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    border: Border.all(
-                      color: const Color(0xFF343638),
-                      width: 7,
-                    ),
-                  ),
-                  child: const CircleAvatar(
-                    radius: 93,
-                    backgroundColor: Color(0xFF202629),
-                    child: Icon(
-                      Icons.person,
-                      size: 100,
-                      color: secondaryText,
-                    ),
+                const CircleAvatar(
+                  radius: 95,
+                  backgroundColor: Color(0xFF303638),
+                  child: Icon(
+                    Icons.person,
+                    size: 100,
+                    color: Colors.white,
                   ),
                 ),
                 Positioned(
-                  right: -2,
-                  bottom: -2,
-                  child: Container(
-                    width: 64,
-                    height: 64,
-                    decoration: const BoxDecoration(
-                      color: green,
-                      shape: BoxShape.circle,
-                    ),
+                  right: 0,
+                  bottom: 0,
+                  child: CircleAvatar(
+                    radius: 31,
+                    backgroundColor: Colors.green,
                     child: const Icon(
                       Icons.camera_alt_outlined,
-                      size: 32,
                       color: Colors.black,
+                      size: 30,
                     ),
                   ),
                 ),
@@ -79,92 +48,110 @@ class ProfilePage extends StatelessWidget {
             ),
           ),
 
-          const SizedBox(height: 88),
+          const SizedBox(height: 80),
 
-          // Informasi profil
-          const _ProfileItem(
-            icon: Icons.person_outline,
-            title: 'Nama',
-            subtitle: 'Al Fatih D Hanif',
-          ),
-          const _ProfileItem(
-            icon: Icons.info_outline,
-            title: 'Tentang',
-            subtitle: 'Atur isi Tentang',
-            subtitleColor: green,
-          ),
-          const _ProfileItem(
-            icon: Icons.alternate_email,
-            title: 'Nama pengguna yang dipesan',
-            subtitle: 'AlFatihDiarHanif',
-          ),
-          const _ProfileItem(
-            icon: Icons.call_outlined,
-            title: 'Telepon',
-            subtitle: '+62 856-4293-2274',
-          ),
-          const _ProfileItem(
-            icon: Icons.link,
-            title: 'Tautan',
-            subtitle: 'Tambah tautan',
-            subtitleColor: green,
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _ProfileItem extends StatelessWidget {
-  final IconData icon;
-  final String title;
-  final String subtitle;
-  final Color? subtitleColor;
-
-  const _ProfileItem({
-    required this.icon,
-    required this.title,
-    required this.subtitle,
-    this.subtitleColor,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(48, 16, 20, 24),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          SizedBox(
-            width: 42,
-            child: Icon(
-              icon,
-              color: const Color(0xFF899195),
+          // Nama
+          const ListTile(
+            contentPadding: EdgeInsets.symmetric(
+              horizontal: 50,
+              vertical: 10,
+            ),
+            leading: Icon(
+              Icons.person_outline,
+              color: Colors.grey,
               size: 30,
             ),
+            title: Text(
+              'Nama',
+              style: TextStyle(color: Colors.white, fontSize: 18),
+            ),
+            subtitle: Text(
+              'Al Fatih D Hanif',
+              style: TextStyle(color: Colors.grey, fontSize: 16),
+            ),
           ),
-          const SizedBox(width: 48),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                  style: const TextStyle(
-                    color: Color(0xFFF1F3F4),
-                    fontSize: 18,
-                  ),
-                ),
-                const SizedBox(height: 5),
-                Text(
-                  subtitle,
-                  style: TextStyle(
-                    color: subtitleColor ??
-                        const Color(0xFF899195),
-                    fontSize: 16,
-                  ),
-                ),
-              ],
+
+          // Tentang
+          const ListTile(
+            contentPadding: EdgeInsets.symmetric(
+              horizontal: 50,
+              vertical: 10,
+            ),
+            leading: Icon(
+              Icons.info_outline,
+              color: Colors.grey,
+              size: 30,
+            ),
+            title: Text(
+              'Tentang',
+              style: TextStyle(color: Colors.white, fontSize: 18),
+            ),
+            subtitle: Text(
+              'Atur isi Tentang',
+              style: TextStyle(color: Colors.green, fontSize: 16),
+            ),
+          ),
+
+          // Nama pengguna
+          const ListTile(
+            contentPadding: EdgeInsets.symmetric(
+              horizontal: 50,
+              vertical: 10,
+            ),
+            leading: Icon(
+              Icons.alternate_email,
+              color: Colors.grey,
+              size: 30,
+            ),
+            title: Text(
+              'Nama pengguna yang dipesan',
+              style: TextStyle(color: Colors.white, fontSize: 18),
+            ),
+            subtitle: Text(
+              'AlFatihDiarHanif',
+              style: TextStyle(color: Colors.grey, fontSize: 16),
+            ),
+          ),
+
+          // Telepon
+          const ListTile(
+            contentPadding: EdgeInsets.symmetric(
+              horizontal: 50,
+              vertical: 10,
+            ),
+            leading: Icon(
+              Icons.phone_outlined,
+              color: Colors.grey,
+              size: 30,
+            ),
+            title: Text(
+              'Telepon',
+              style: TextStyle(color: Colors.white, fontSize: 18),
+            ),
+            subtitle: Text(
+              '+62 856-4293-2274',
+              style: TextStyle(color: Colors.grey, fontSize: 16),
+            ),
+          ),
+
+          // Tautan
+          const ListTile(
+            contentPadding: EdgeInsets.symmetric(
+              horizontal: 50,
+              vertical: 10,
+            ),
+            leading: Icon(
+              Icons.link,
+              color: Colors.grey,
+              size: 30,
+            ),
+            title: Text(
+              'Tautan',
+              style: TextStyle(color: Colors.white, fontSize: 18),
+            ),
+            subtitle: Text(
+              'Tambah tautan',
+              style: TextStyle(color: Colors.green, fontSize: 16),
             ),
           ),
         ],
