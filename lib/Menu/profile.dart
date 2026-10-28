@@ -6,109 +6,108 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const textColor = Color(0xFF17232B);
-    const subTextColor = Color(0xFF667781);
-    const greenColor = Color(0xFF008F72);
+    const background = Color(0xFF0B1012);
+    const primaryText = Color(0xFFF1F3F4);
+    const secondaryText = Color(0xFF899195);
+    const green = Color(0xFF20C56B);
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: background,
       appBar: AppBar(
-        backgroundColor: greenColor,
-        foregroundColor: Colors.white,
+        backgroundColor: background,
+        foregroundColor: primaryText,
         elevation: 0,
-        title: const Text('Profil'),
+        title: const Text(
+          'Profil',
+          style: TextStyle(fontSize: 24),
+        ),
+        bottom: const PreferredSize(
+          preferredSize: Size.fromHeight(1),
+          child: Divider(
+            height: 1,
+            color: Color(0xFF1B2225),
+          ),
+        ),
       ),
       body: ListView(
+        padding: EdgeInsets.zero,
         children: [
-          const SizedBox(height: 28),
+          const SizedBox(height: 48),
 
-          // Foto profil dan informasi singkat
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20),
-            child: Row(
+          // Foto profil
+          Center(
+            child: Stack(
+              clipBehavior: Clip.none,
               children: [
-                CircleAvatar(
-                  radius: 42,
-                  backgroundColor: Color(0xFFDCE3E7),
-                  child: Icon(
-                    Icons.person,
-                    size: 52,
-                    color: Colors.white,
+                Container(
+                  padding: const EdgeInsets.all(5),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      color: const Color(0xFF343638),
+                      width: 7,
+                    ),
+                  ),
+                  child: const CircleAvatar(
+                    radius: 93,
+                    backgroundColor: Color(0xFF202629),
+                    child: Icon(
+                      Icons.person,
+                      size: 100,
+                      color: secondaryText,
+                    ),
                   ),
                 ),
-                SizedBox(width: 20),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Diar Hanif',
-                        style: TextStyle(
-                          fontSize: 23,
-                          fontWeight: FontWeight.w500,
-                          color: textColor,
-                        ),
-                      ),
-                      SizedBox(height: 6),
-                      Text(
-                        'Hai, saya menggunakan WhatsApp.',
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: subTextColor,
-                        ),
-                      ),
-                    ],
+                Positioned(
+                  right: -2,
+                  bottom: -2,
+                  child: Container(
+                    width: 64,
+                    height: 64,
+                    decoration: const BoxDecoration(
+                      color: green,
+                      shape: BoxShape.circle,
+                    ),
+                    child: const Icon(
+                      Icons.camera_alt_outlined,
+                      size: 32,
+                      color: Colors.black,
+                    ),
                   ),
                 ),
               ],
             ),
           ),
 
-          const SizedBox(height: 30),
+          const SizedBox(height: 88),
 
           // Informasi profil
           const _ProfileItem(
             icon: Icons.person_outline,
             title: 'Nama',
-            subtitle: 'Diar Hanif',
+            subtitle: 'Al Fatih D Hanif',
           ),
           const _ProfileItem(
             icon: Icons.info_outline,
             title: 'Tentang',
-            subtitle: 'Hai, saya menggunakan WhatsApp.',
+            subtitle: 'Atur isi Tentang',
+            subtitleColor: green,
           ),
           const _ProfileItem(
-            icon: Icons.phone_outlined,
-            title: 'Nomor telepon',
-            subtitle: '+62 812 3456 7890',
-          ),
-
-          const SizedBox(height: 16),
-          const Divider(
-            thickness: 6,
-            color: Color(0xFFF4F6F7),
-          ),
-
-          // Pengaturan profil
-          const _ProfileItem(
-            icon: Icons.shield_outlined,
-            title: 'Privasi',
+            icon: Icons.alternate_email,
+            title: 'Nama pengguna yang dipesan',
+            subtitle: 'AlFatihDiarHanif',
           ),
           const _ProfileItem(
-            icon: Icons.face_outlined,
-            title: 'Avatar',
+            icon: Icons.call_outlined,
+            title: 'Telepon',
+            subtitle: '+62 856-4293-2274',
           ),
           const _ProfileItem(
-            icon: Icons.photo_outlined,
-            title: 'Foto profil',
-          ),
-          const _ProfileItem(
-            icon: Icons.auto_awesome_outlined,
-            title: 'Status',
-          ),
-          const _ProfileItem(
-            icon: Icons.lock_outline,
-            title: 'Keamanan',
+            icon: Icons.link,
+            title: 'Tautan',
+            subtitle: 'Tambah tautan',
+            subtitleColor: green,
           ),
         ],
       ),
@@ -119,45 +118,56 @@ class ProfilePage extends StatelessWidget {
 class _ProfileItem extends StatelessWidget {
   final IconData icon;
   final String title;
-  final String? subtitle;
+  final String subtitle;
+  final Color? subtitleColor;
 
   const _ProfileItem({
     required this.icon,
     required this.title,
-    this.subtitle,
+    required this.subtitle,
+    this.subtitleColor,
   });
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      contentPadding: const EdgeInsets.symmetric(
-        horizontal: 20,
-        vertical: 7,
-      ),
-      leading: Icon(
-        icon,
-        color: const Color(0xFF71858D),
-        size: 25,
-      ),
-      title: Text(
-        title,
-        style: const TextStyle(
-          fontSize: 16,
-          color: Color(0xFF17232B),
-        ),
-      ),
-      subtitle: subtitle == null
-          ? null
-          : Text(
-              subtitle!,
-              style: const TextStyle(
-                fontSize: 14,
-                color: Color(0xFF667781),
-              ),
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(48, 16, 20, 24),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          SizedBox(
+            width: 42,
+            child: Icon(
+              icon,
+              color: const Color(0xFF899195),
+              size: 30,
             ),
-      trailing: const Icon(
-        Icons.chevron_right,
-        color: Color(0xFF91A1A8),
+          ),
+          const SizedBox(width: 48),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: const TextStyle(
+                    color: Color(0xFFF1F3F4),
+                    fontSize: 18,
+                  ),
+                ),
+                const SizedBox(height: 5),
+                Text(
+                  subtitle,
+                  style: TextStyle(
+                    color: subtitleColor ??
+                        const Color(0xFF899195),
+                    fontSize: 16,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
