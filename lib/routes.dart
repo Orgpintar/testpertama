@@ -3,6 +3,7 @@ import 'package:testpertama/Pages/confirm_Page.dart';
 import 'package:testpertama/Pages/listmakanan_Page.dart';
 import 'package:testpertama/Pages/detailmakanan_Page.dart';
 import 'package:testpertama/Pages/mainMenu_Page.dart';
+import 'package:testpertama/Pages/MenuDrawer_Page.dart';
 import 'package:get/get.dart';
 
 class Routes {
@@ -12,6 +13,7 @@ class Routes {
   static const String listmakanan = "/listmakanan";
   static const String detailmakanan = "/detailmakanan";
   static const String mainmenu = "/mainmenu";
+  static const String menudrawer = "/menudrawer";
   // others pages here
 
   // untuk kita daftarkan di main dart, isinya array page yang kita punya
@@ -21,5 +23,6 @@ class Routes {
     GetPage(name: listmakanan, page: () => ListMakananPage()),
     GetPage(name: detailmakanan, page: () => DetailmakananPage()),
     GetPage(name: mainmenu, page: () => MainmenuPage()),
+    GetPage(name: menudrawer, page: () => MainDrawerPage()),
   ];
 }
