@@ -1,41 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:testpertama/Components/custom_textfield.dart';
 import 'package:testpertama/Components/custom_button.dart';
 import 'package:testpertama/Components/custom_text.dart';
+import 'package:testpertama/Controller/Login_Clone_Controller.dart';
 
 class LoginClonePage extends StatelessWidget {
-  final TextEditingController username;
-  final TextEditingController password;
-  final String statusLogin = "";
-  const LoginClonePage({super.key, required this.username, required this.password});
+  LoginClonePage({super.key});
+
+  final controller = Get.put(LoginCloneController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: CustomText(text: "Login Clone"),
+        title: CustomText(text: "Login Clone API"),
       ),
       body: Column(
         children: [
           CustomText(text: "INSTAGRAM"),
           Container(
             margin: EdgeInsets.all(10),
-            child: CustomTextfield(controller: username, myHint: "Enter your username", obscureText: false)),
+            child: CustomTextfield(controller: controller.txtUsername, myHint: "Enter your username", obscureText: false)),
           Container(
             margin: EdgeInsets.all(10),
-            child: CustomTextfield(controller: password, myHint: "Enter your password", obscureText: true)),
-          Container(
+            child: CustomTextfield(controller: controller.txtPassword, myHint: "Enter your password", obscureText: true)),
+          Obx(()=>controller.isLoading.value ? Center(child: CircularProgressIndicator()) : Container(
             margin: EdgeInsets.all(10),
             child: CustomButton(onPressed: () {
-                String usernameText = username.text.toString();
-                String passwordText = password.text.toString();
-                if(usernameText == "admin" && passwordText == "admin"){
-                  print("Login Success");
-                } else {
-                  print("Login Failed");
-                } 
+                controller.login();
             }, text: "Login"),
-          )
+          ))
         ],
       ),
     );

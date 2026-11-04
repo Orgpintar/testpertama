@@ -1,3 +1,4 @@
+import 'package:testpertama/Pages/Login_Clone_Pages.dart';
 import 'package:testpertama/Pages/registration_Page.dart';
 import 'package:testpertama/Pages/confirm_Page.dart';
 import 'package:testpertama/Pages/listmakanan_Page.dart';
@@ -8,6 +9,7 @@ import 'package:get/get.dart';
 
 class Routes {
   // list variabel nama halaman
+  static const String loginclone = "/loginclone";
   static const String registration = "/registration";
   static const String confirm = "/confirm_registration";
   static const String listmakanan = "/listmakanan";
@@ -24,5 +26,6 @@ class Routes {
     GetPage(name: detailmakanan, page: () => DetailmakananPage()),
     GetPage(name: mainmenu, page: () => MainmenuPage()),
     GetPage(name: menudrawer, page: () => MainDrawerPage()),
+    GetPage(name: loginclone, page: () => LoginClonePage()),
   ];
 }
